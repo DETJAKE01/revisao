@@ -1,18 +1,19 @@
 //carregar o modulo express
+const { urlencoded } = require('express')
 const express = require('express')
 
 //carregar o modulo mongoose
 const mongoose = require('mongoose')
 
 //conectar com o banco de dados revisao
-const conexao=()=>{
-    mongoose.connect('mongodb+srv://userRevisao:LUCCA0108052015@fiaptecnico.nw8ac.mongodb.net/test')
+const conexao = ()=>{
+    mongoose.connect('mongodb+srv://userRevisao:LUCCA0108052015@fiaptecnico.nw8ac.mongodb.net/revisao')
 }
 //conectar com a collection infos
 const modelo = new mongoose.Schema({
-    nome:string,
-    turma:string,
-    disciplina:strong
+    nome:String,
+    turma:String,
+    disciplina:String
 })
 const infos = mongoose.model('infos',modelo)
 
@@ -28,6 +29,13 @@ app.get('/',async(req,res)=>{
     //buscar todos os dados de infos
     const resultado= await infos.find()
     res.render('index.ejs',{resultado})
+})
+
+//gravar as informações do formulario no banco de dados
+app.use(urlencoded({extended:false}))
+app.post('/',async(req,res)=>{
+    const dados = req.body
+    res.send(dados)
 })
 
 //ligar o servidor na porta 3050

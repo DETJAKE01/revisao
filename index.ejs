@@ -11,9 +11,18 @@
 <body>
     <div class="container">
         <h1 class="text-center">Página de Revisão</h1>
-        <h3 class="text-center">Nome: <%=resultado[0].nome%></h3>
-        <h3 class="text-center">Turma: <%=resultado%[0].turma></h3>
-        <h4 class="text-center">Disciplina: <%=resultado%[0].disciplina></h4>
+        <% for (var n=0; n<resultado.length;n++){%>
+        <h3 class="text-center">Nome: <%=resultado[n].nome%></h3>
+        <h3 class="text-center">Turma: <%=resultado[n].turma%></h3>
+        <h4 class="text-center">Disciplina: <%=resultado[n].disciplina%></h4>
+        <%}%>
+        <form action="" method="post" class="form-control">
+            <h3 class="text-center">Cadastro</h3>
+            <input type="text" name="nome" placeholder="nome" class="form-control" id="">
+            <input type="text" name="turma" placeholder="Turma" class="form-control" id="">
+            <input type="text" name="Disciplina" placeholder="Disciplina" class="form-control" id="">
+            <input type="submit" value="Salvar" class="btn btn-outline-success form-control">
+        </form>
     </div>
     
 </body>
